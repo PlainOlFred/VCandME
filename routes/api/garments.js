@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 
 // @route   POST api/garment
-// @desc    Create garments for user
+// @desc    Create garment for user
 // Public
 router.post('/', (req, res) => {
  const newGarment = new Garment({
@@ -27,6 +27,16 @@ router.post('/', (req, res) => {
  newGarment.save()
   .then( garment => res.json(garment))
 
+});
+
+// @route   DELETE api/garment
+// @desc    Delete garment for user
+// Public
+router.delete('/:id', (req, res) => {
+  Garment.findById(req.params.id)
+  .then( garment => garment.remove()
+    .then(()=>res.json({removed: true}))
+    .catch(err =>res.status(404).json({removed: false})))
 });
 
 module.exports = router;
