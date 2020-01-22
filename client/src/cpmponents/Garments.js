@@ -6,40 +6,27 @@ import {
   Button,
   Card, CardTitle, CardText, CardImg
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
+import { getGarments, deleteGarment } from '../actions/garmentActions'
 import uuid from 'uuid';
 
 
 class Garments extends Component {
-  state = {
-    garments: [
-      {id: uuid(), brand: "Polo", color: "green", picture: "image", type: "top"},
-      {id: uuid(), brand: "Polo", color: "white", picture: "image", type: "top"},
-      {id: uuid(), brand: "Hillfigure", color: "black", picture: "image", type: "bottom"},
-      {id: uuid(), brand: "Guess", color: "black", picture: "image", type: "bottom"},
-      {id: uuid(), brand: "Old Navy", color: "Blue", picture: "image", type: "top"}
-    ]
+
+  componentDidMount() {
+    this.props.getGarments();
   }
 
+  onDeleteClick = (id) => {
+    this.props.deleteGarment(id)
+  }
+  
   render() {
-    const { garments } = this.state;
+    const { garments } = this.props.garment;
     return (
       <Container>
-        <Button
-          style={{marginBottom: '2rem'}}
-          onClick={() => {
-            const brand = prompt('Enter Brand');
-            const color = prompt('Enter Color');
-            const picture = 'image';
-            const type= prompt('Enter type');
-
-            if(type) {
-              this.setState(state => ({
-                garments: [...state.garments, {id: uuid(),brand, color, picture, type}]
-              }))
-            }
-           
-          }}
-        >Add Garment</Button>
+        
         <ListGroup>
           {garments.map(({id, brand, color, picture, type}) => (
             <ListGroupItem key={id}>
@@ -49,11 +36,7 @@ class Garments extends Component {
                     <CardText>{color}{picture}</CardText> 
                     <Button
                       color="danger"
-                      onClick ={() => {
-                        this.setState(state => ({
-                          garments: state.garments.filter(garment => garment.id != id)
-                        }))
-                      }}
+                      onClick ={this.onDeleteClick.bind(this, id)}
                     >Delete Garment
                     </Button>   
                   </Card>
@@ -66,7 +49,15 @@ class Garments extends Component {
       
     )
   }
-
 }
 
-export default Garments;
+// Garments.PropTypes = {
+//   getGarments: PropTypes.func.isRequired,
+//   garment: PropTypes.object.isRequired
+// }
+
+const mapStateToProps = (state) => ({
+  garment: state.garment
+})
+
+export default connect(mapStateToProps, { getGarments, deleteGarment })(Garments);
