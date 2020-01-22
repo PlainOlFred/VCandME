@@ -23,6 +23,12 @@ export default function(state = initialState, action) {
         ...state,
         garments: state.garments.filter(garment => garment.id != action.payload)
       }
+
+    case ADD_GARMENT:
+      return {
+        ...state,
+        garments: [action.payload, ...state.garments]
+      }
     default:
       return state
   }

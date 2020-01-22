@@ -7,11 +7,13 @@ import {
 
 import { connect } from 'react-redux';
 
-import { addGarment } from '../actions/garmentActions'
+import { addGarment } from '../actions/garmentActions';
+
+import uuid from 'uuid';
 
 const AddGarmentModal = (props) => {
 
-  // const {buttonLabel, className} = props;
+  const {buttonLabel, className, addGarment} = props;
 
   const [modal, setModal] = useState(false);
   const [brand, setBrand] = useState('');
@@ -27,8 +29,20 @@ const AddGarmentModal = (props) => {
   const onPictureChange = e => setPicture(e.target.value);
   const onTypeChange = e => setType(e.target.value);
 
-  const submit = () => {
-    console.log('Submit')
+  const submit = (e) => {
+    e.preventDefault()
+    console.log('Submit');
+    const newGarment = {
+      id: uuid(),
+      brand,
+      type,
+      color, 
+      picture
+    }
+
+    addGarment(newGarment);
+
+    setModal(!modal);
   }
 
   return(
@@ -79,15 +93,21 @@ const AddGarmentModal = (props) => {
                 name="picture"
                 id="picture"
               />
-            </FormGroup>     
+            </FormGroup> 
+            {/* Add Button */}
+          <Button color="primary" block>Add to Closet</Button>    
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary">Add to Closet</Button>
         </ModalFooter>
       </Modal>
     </div>
   )
 
 }
- export default connect()(AddGarmentModal);
+
+const mapStateToProps = (state) => ({
+  garment: state.garment
+})
+
+ export default connect(mapStateToProps, { addGarment })(AddGarmentModal);

@@ -14,3 +14,10 @@ export const deleteGarment = (id) => {
     payload: id
   }
 }
+
+export const addGarment = (garment) => {
+  return {
+    type: ADD_GARMENT,
+    payload: garment
+  }
+}
