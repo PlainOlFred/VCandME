@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 import { addGarment } from '../actions/garmentActions';
 
-import uuid from 'uuid';
+
 
 const AddGarmentModal = (props) => {
 
@@ -31,15 +31,14 @@ const AddGarmentModal = (props) => {
 
   const submit = (e) => {
     e.preventDefault()
-    console.log('Submit');
     const newGarment = {
-      id: uuid(),
       brand,
       type,
       color, 
       picture
     }
 
+    
     addGarment(newGarment);
 
     setModal(!modal);
@@ -52,20 +51,6 @@ const AddGarmentModal = (props) => {
         <ModalHeader toggle={toggle}>Add Garment</ModalHeader>
         <ModalBody>
           <Form onSubmit={submit}>
-            {/* Type Input */}
-            <FormGroup>
-              <Label for="type">Select Type: </Label>
-              <Input
-                type="select"
-                name="type"
-                id="type"
-                placeholder="Select Type of Garment"
-                onChange={onTypeChange}>
-                  <option>Top</option>
-                  <option>Bottom</option>
-                  <option>Full</option>
-                </Input>
-            </FormGroup>
             {/* Brand Input */}
             <FormGroup>
               <Label for="brand">Brand: </Label>
@@ -76,14 +61,43 @@ const AddGarmentModal = (props) => {
                 placeholder="Enter Brand" 
                 onChange={onBrandChange}/>
             </FormGroup>
+            {/* Type Input */}
+            <FormGroup>
+              <Label for="type">Type: </Label>
+              <Input
+                type="select"
+                name="type"
+                id="type"
+                placeholder="Select Color of Garment"
+                onChange={onTypeChange}>
+                  <option value="">Select type of Garment</option>
+                  <option value="top">Top</option>
+                  <option value="bottom">Bottom</option>
+                  <option value="full">Full</option>
+
+                </Input>
+            </FormGroup>
+            
+            
             {/* Color Input */}
             <FormGroup>
               <Label for="color">Color: </Label>
-              <Input 
-                type="color"
+              <Input
+                type="select"
                 name="color"
                 id="color"
-                onChange={onColorChange} />
+                placeholder="Select Color of Garment"
+                onChange={onColorChange}>
+                  <option value="">Select color of Garment</option>
+                  <option>Black</option>
+                  <option>White</option>
+                  <option>Red</option>
+                  <option>Organge</option>
+                  <option>Yellow</option>
+                  <option>Green</option>
+                  <option>Blue</option>
+                  <option>Purple</option>
+                </Input>
             </FormGroup>
             {/* Picture Input */}
             <FormGroup>
