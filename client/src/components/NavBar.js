@@ -15,6 +15,8 @@ import {
 } from 'reactstrap';
 
 import NewUserModal from './NewUserModal'
+import LogoffUser from './LogoffUser'
+import LoginModal from './LoginModal';
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,6 +39,12 @@ const NavBar = (props) => {
             </NavItem>
             <NavItem>
               <NewUserModal />
+            </NavItem>
+            <NavItem>
+              <LogoffUser />
+            </NavItem> 
+            <NavItem>
+              <LoginModal />
             </NavItem> 
           </Nav>
          

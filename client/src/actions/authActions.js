@@ -32,13 +32,14 @@ export const loadUser = () => (dispatch, getState) => {
 
 // sign up user
 export const signUp = ({name, email, password}) => dispatch => {
+
   const config = {
-    header: {
+    headers: {
       'Content-Type': 'application/json'
     }
   }
-
-  const body = JSON.stringify({ name, email, password})
+ 
+  const body = JSON.stringify({ name, email, password});
 
   axios.post('/api/users', body, config)
     .then(res => dispatch({
@@ -54,19 +55,49 @@ export const signUp = ({name, email, password}) => dispatch => {
     })
 }
 
+export const loginUser = ({email, password}) => dispatch => {
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+ 
+  const body = JSON.stringify({ email, password});
+
+  axios.post('/api/auth', body, config)
+    .then(res => dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data
+    }))
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status, 'LOGIN_FAILED'))
+      dispatch({
+        type: LOGIN_FAILED
+      });
+      
+    })
+}
+
+export const logoutUser = () => {
+  return {
+    type: LOGOUT_SUCCESS
+  }
+}
+
 export const tokenConfig = getState => {
   // Token
   const token = getState().auth.token;
 
   // Header with Token
   const config = {
-    header: {
+    headers: {
       "Content-type": "application/json",
     }
   }
   
   if(token) {
-    config.header['x-auth-token'] = token
+    config.headers['x-auth-token'] = token
   }
 
   return config;
