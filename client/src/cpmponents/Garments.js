@@ -9,7 +9,7 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import { getGarments, deleteGarment } from '../actions/garmentActions'
-import uuid from 'uuid';
+
 
 
 class Garments extends Component {
@@ -28,15 +28,15 @@ class Garments extends Component {
       <Container>
         
         <ListGroup>
-          {garments.map(({id, brand, color, picture, type}) => (
-            <ListGroupItem key={id}>
+          {garments.map(({_id, brand, color, picture, type}) => (
+            <ListGroupItem key={_id}>
               <div>
                   <Card body>
                     <CardTitle>{brand}, {type}</CardTitle>
                     <CardText>{color}{picture}</CardText> 
                     <Button
                       color="danger"
-                      onClick ={this.onDeleteClick.bind(this, id)}
+                      onClick ={this.onDeleteClick.bind(this, _id)}
                     >Delete Garment
                     </Button>   
                   </Card>
