@@ -21,6 +21,11 @@ class Garments extends Component {
   onDeleteClick = (id) => {
     this.props.deleteGarment(id)
   }
+
+  // static PropTypes = {
+  //   getGarments: PropTypes.func.isRequired,
+  //   garment: PropTypes.object.isRequired
+  // }
   
   render() {
     const { garments } = this.props.garment;
@@ -51,10 +56,7 @@ class Garments extends Component {
   }
 }
 
-// Garments.PropTypes = {
-//   getGarments: PropTypes.func.isRequired,
-//   garment: PropTypes.object.isRequired
-// }
+
 
 const mapStateToProps = (state) => ({
   garment: state.garment

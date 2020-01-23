@@ -120,6 +120,8 @@ const AddGarmentModal = (props) => {
 
 }
 
+
+
 const mapStateToProps = (state) => ({
   garment: state.garment
 })

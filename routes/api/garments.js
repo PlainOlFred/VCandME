@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../../middleware/auth');
 
 // Model
 const Garment = require('../../models/Garment')
 
-// @route   GET api/garment
+// @route   GET api/garments
 // @desc    Get all garments for user
 // Public
 router.get('/', (req, res) => {
@@ -13,10 +14,10 @@ router.get('/', (req, res) => {
 });
 
 
-// @route   POST api/garment
+// @route   POST api/garments
 // @desc    Create garment for user
-// Public
-router.post('/', (req, res) => {
+// Private
+router.post('/', auth,  (req, res) => {
  const newGarment = new Garment({
    brand: req.body.brand,
    color: req.body.color,
@@ -29,10 +30,10 @@ router.post('/', (req, res) => {
 
 });
 
-// @route   DELETE api/garment
+// @route   DELETE api/garments
 // @desc    Delete garment for user
-// Public
-router.delete('/:id', (req, res) => {
+// Private
+router.delete('/:id', auth,  (req, res) => {
   Garment.findById(req.params.id)
   .then( garment => garment.remove()
     .then(()=>res.json({removed: true}))

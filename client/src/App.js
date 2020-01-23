@@ -1,25 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import NavBar from './cpmponents/NavBar';
-import Garments from './cpmponents/Garments';
-import AddGarmentModal from './cpmponents/AddGarmentModal';
+import { Container } from 'reactstrap';
+import NavBar from './components/NavBar';
+import Garments from './components/Garments';
+import AddGarmentModal from './components/AddGarmentModal';
 import './App.css';
 
 import store from './store';
 import { Provider } from 'react-redux';
 
-function App() {
-  return (
+import { loadUser } from './actions/authActions'
+
+class App extends Component {
+
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
+
+  render() {
+    return (
     <Provider store={store}>
       <div className="App">
         <NavBar />
-        <AddGarmentModal />
-        <Garments />
+        <Container>
+          <AddGarmentModal />
+          <Garments />
+        </Container> 
       </div>
     </Provider>
     
-  );
+    );
+  }
+  
 }
 
 export default App;

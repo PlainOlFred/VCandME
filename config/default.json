@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb://localhost/VCandME",
+  "jwtSecret": "VCandME_jwtSecret"
+}

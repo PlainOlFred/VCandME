@@ -14,6 +14,8 @@ import {
   NavbarText
 } from 'reactstrap';
 
+import NewUserModal from './NewUserModal'
+
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,7 +36,7 @@ const NavBar = (props) => {
               <NavLink href="https://github.com/reactstrap/reactstrap">Outfit</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">Login</NavLink>
+              <NewUserModal />
             </NavItem> 
           </Nav>
          
