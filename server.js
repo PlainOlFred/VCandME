@@ -22,6 +22,7 @@ mongoose.connect(db,{
 
 // Use Routes
 app.use('/api/garments',require('./routes/api/garments'))
+app.use('/api/outfits',require('./routes/api/outfits'))
 app.use('/api/users',require('./routes/api/users'))
 app.use('/api/auth',require('./routes/api/auth'))
 
