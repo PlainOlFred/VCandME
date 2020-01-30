@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { 
+  BrowserRouter as Router,
+  Switch,
+  Route
+ } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'reactstrap';
 import NavBar from './components/NavBar';
@@ -20,13 +25,27 @@ class App extends Component {
   render() {
     return (
     <Provider store={store}>
-      <div className="App">
+      <Router>
+        <div className="App">
         <NavBar />
-        <Container>
-          <AddGarmentModal />
-          <Garments />
-        </Container> 
+        <Switch>
+          <Route path='/closet'>
+            <Container>
+              <AddGarmentModal />
+              <Garments />
+            </Container>
+          </Route>
+          <Route path='/outfits'>
+            <Container>
+              <h1>Outfits</h1>
+            </Container>
+          </Route>
+        </Switch>
+         
       </div>
+
+      </Router>
+      
     </Provider>
     
     );

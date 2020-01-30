@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -32,10 +33,10 @@ const NavBar = (props) => {
           <Nav className="ml-auto" navbar>
             <NavbarText>User</NavbarText>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">Closets</NavLink>
+              <Link to='/closet'>Closets</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">Outfit</NavLink>
+              <Link to='/outfits'>Outfit</Link>
             </NavItem>
             <NavItem>
               <NewUserModal />
