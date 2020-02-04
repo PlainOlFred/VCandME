@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'reactstrap';
 import NavBar from './components/NavBar';
 import Garments from './components/Garments';
+import Outfits from './components/Outfits';
 import AddGarmentModal from './components/AddGarmentModal';
 import './App.css';
 
@@ -37,7 +38,7 @@ class App extends Component {
           </Route>
           <Route path='/outfits'>
             <Container>
-              <h1>Outfits</h1>
+              <Outfits />
             </Container>
           </Route>
         </Switch>

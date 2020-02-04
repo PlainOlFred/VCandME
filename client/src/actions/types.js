@@ -1,9 +1,3 @@
-export const GET_GARMENTS = 'GET_GARMENTS';
-export const GARMENTS_LOADING ='GARMENTS_LOADING'
-export const ADD_GARMENT = 'ADD_GARMENT';
-export const GARMENTS_ADDING = 'GARMENTS_ADDING';
-export const DELETE_GARMENT = 'DELETE_GARMENT';
-
 // USER and AUTH actions types
 export const USER_LOADING = 'USER_LOADING';
 export const USER_LOADED = 'USER_LOADED';
@@ -18,3 +12,17 @@ export const REGISTER_FAILED = 'REGISTER_FAILED';
 
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+
+// GARMENTS ACTIONS TYPES
+export const GET_GARMENTS = 'GET_GARMENTS';
+export const GARMENTS_LOADING ='GARMENTS_LOADING'
+export const ADD_GARMENT = 'ADD_GARMENT';
+export const GARMENTS_ADDING = 'GARMENTS_ADDING';
+export const DELETE_GARMENT = 'DELETE_GARMENT';
+
+export const TRY_ON_GARMENT = 'TRY_ON_GARMENT';
+
+// OUTFIT ACTIONS TYPES
+export const GET_OUTFITS = 'GET_OUTFITS';
+export const ADD_OUTFIT = 'ADD_OUTFIT';
+export const DELETE_OUTFIT = 'DELETE_OUTFIT';

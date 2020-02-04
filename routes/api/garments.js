@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 // @route   POST api/garments
 // @desc    Create garment for user
 // Private
-router.post('/', auth,  (req, res) => {
+router.post('/',  (req, res) => {
  const newGarment = new Garment({
    brand: req.body.brand,
    color: req.body.color,
@@ -33,7 +33,7 @@ router.post('/', auth,  (req, res) => {
 // @route   DELETE api/garments
 // @desc    Delete garment for user
 // Private
-router.delete('/:id', auth,  (req, res) => {
+router.delete('/:id',  (req, res) => {
   Garment.findById(req.params.id)
   .then( garment => garment.remove()
     .then(()=>res.json({removed: true}))

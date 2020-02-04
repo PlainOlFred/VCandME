@@ -12,25 +12,20 @@ import { getOutfits, deleteOutfit } from '../actions/outfitActions'
 
 
 
-class Outfits extends Component {
+const Outfits =(props) => {
+  const { outfits, currentTop, currentBottom } = props.outfit;
 
-  componentDidMount() {
-    this.props.getOutfits();
-  }
-
-  onDeleteClick = (id) => {
-    this.props.deleteOutfit(id)
-  }
-
-  
-  
-  render() {
-    const { garments } = this.props.garment;
     return (
       <Container>
-        
+        <Card>
+          <CardText>{currentTop.brand}</CardText>
+        </Card>  
+        <Card>
+          <CardText>{currentBottom.brand}</CardText>
+        </Card>
+        <Button>Save This Outfit</Button>    
         <ListGroup>
-          {garments.map(({_id, top, bottom}) => (
+          {outfits.map(({_id, top, bottom}) => (
             <ListGroupItem key={_id}>
               <div>
                   <Card body>
@@ -44,7 +39,7 @@ class Outfits extends Component {
       </Container>
       
     )
-  }
+  
 }
 
 

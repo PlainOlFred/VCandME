@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import { getGarments, deleteGarment } from '../actions/garmentActions'
+import { tryOnGarment } from '../actions/outfitActions'
 
 
 
@@ -21,11 +22,11 @@ class Garments extends Component {
   onDeleteClick = (id) => {
     this.props.deleteGarment(id)
   }
+  onTryOnClick = (garment) => {
+   this.props.tryOnGarment(garment)
+  }
 
-  // static PropTypes = {
-  //   getGarments: PropTypes.func.isRequired,
-  //   garment: PropTypes.object.isRequired
-  // }
+
   
   render() {
     const { garments } = this.props.garment;
@@ -33,17 +34,22 @@ class Garments extends Component {
       <Container>
         
         <ListGroup>
-          {garments.map(({_id, brand, color, picture, type}) => (
-            <ListGroupItem key={_id}>
+          {garments.map((garment) => (
+            <ListGroupItem key={garment._id}>
               <div>
                   <Card body>
-                    <CardTitle>{brand}, {type}</CardTitle>
-                    <CardText>{color}{picture}</CardText> 
+                    <CardTitle>{garment.brand}, {garment.type}</CardTitle>
+                    <CardText>{garment.color}{garment.picture}</CardText> 
+                    <Button
+                      color="success"
+                      onClick ={this.onTryOnClick.bind(this, garment)}
+                    >Try On Garment
+                    </Button> 
                     <Button
                       color="danger"
-                      onClick ={this.onDeleteClick.bind(this, _id)}
+                      onClick ={this.onDeleteClick.bind(this, garment._id)}
                     >Delete Garment
-                    </Button>   
+                    </Button>    
                   </Card>
 
               </div>
@@ -62,4 +68,4 @@ const mapStateToProps = (state) => ({
   garment: state.garment
 })
 
-export default connect(mapStateToProps, { getGarments, deleteGarment })(Garments);
+export default connect(mapStateToProps, { getGarments, deleteGarment, tryOnGarment })(Garments);

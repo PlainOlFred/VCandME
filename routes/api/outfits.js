@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 // @route   POST api/outfits
 // @desc    Create outfit for user
 // Private
-router.post('/', auth,  (req, res) => {
+router.post('/', (req, res) => {
  const newOutfit = new Outfit({
    user: req.body.user,
    top: req.body.top,
@@ -32,7 +32,7 @@ router.post('/', auth,  (req, res) => {
 // @route   DELETE api/outfits
 // @desc    Delete outfit 
 // Private
-router.delete('/:id', auth,  (req, res) => {
+router.delete('/:id', (req, res) => {
   Outfit.findById(req.params.id)
   .then( outfit => outfit.remove()
     .then(()=>res.json({removed: true}))
